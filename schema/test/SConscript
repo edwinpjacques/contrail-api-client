@@ -55,7 +55,7 @@ def CCMapTest(env, testname):
 test_list = []
 map_env = env.Clone()
 
-etcd_incl = os.environ.get('CONTRAIL_ETCD_INCL');
+etcd_incl = os.environ.get('CONTRAIL_K8S_CONFIG');
 
 if etcd_incl:
     map_env.Prepend(LIBS = ['etcdql', 'protobuf', 'grpc++', 'grpc', 'z'])
