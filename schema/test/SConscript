@@ -55,10 +55,10 @@ def CCMapTest(env, testname):
 test_list = []
 map_env = env.Clone()
 
-etcd_incl = os.environ.get('CONTRAIL_K8S_CONFIG');
+k8s_incl = os.environ.get('CONTRAIL_K8S_CONFIG');
 
-if etcd_incl:
-    map_env.Prepend(LIBS = ['etcdql', 'protobuf', 'grpc++', 'grpc', 'z'])
+if k8s_incl:
+    map_env.Prepend(LIBS = ['k8s_client', 'restclient-cpp'])
 
 map_env.Prepend(LIBS = ['ifmap_agent', 'ifmap_common', 'ifmapio', 'config_client_mgr'])
 test_list.append(CCMapTest(map_env, 'ifmap_link_attr'))
@@ -74,8 +74,8 @@ test_list.append(CCMapTest(map_env, 'ifmap_identity_property'))
 vnc_cfg_env = env.Clone()
 vnc_cfg_env.Append(LIBPATH = env['TOP'] + '/schema')
 
-if etcd_incl:
-    vnc_cfg_env.Prepend(LIBS = ['etcdql', 'protobuf', 'grpc++', 'grpc', 'z'])
+if k8s_incl:
+    vnc_cfg_env.Prepend(LIBS = ['k8s_client', 'restclient-cpp'])
 
 vnc_cfg_env.Prepend(LIBS = ['ifmap_vnc', 'ifmap_common', 'ifmapio', 'config_client_mgr'])
 
